@@ -15,6 +15,10 @@ namespace WE02Library
             LastName = lastName;
         }
 
+        public Client()
+        {
+        }
+
         public override string ToString()
         {
             return $"{LastName.ToUpperInvariant()} {FirstName}";
