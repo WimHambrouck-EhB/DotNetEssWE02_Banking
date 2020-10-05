@@ -4,6 +4,8 @@ namespace WE02Library
 {
     public abstract class Account
     {
+        private const int _minimumBalance = -1000;
+
         public string IBAN { get; set; }
         public decimal Balance { get; private set; }
         public DateTime CreationDate { get; set; }
@@ -46,20 +48,18 @@ namespace WE02Library
         /// <exception cref="InvalidOperationException">Thrown if subtraction of amount would result in account to be overdrawn.</exception>"
         public void Withdraw(decimal amount)
         {
-            decimal minimumBalance = -1000;
-
             if (amount <= 0)
             {
                 throw new ArgumentException("Withdrawn amount must be a positive number!");
             }
 
-            if (Balance - amount >= minimumBalance)
+            if (Balance - amount >= _minimumBalance)
             {
                 Balance -= amount;
             }
             else
             {
-                throw new InvalidOperationException($"Withdrawal would exceed minimum balance of {minimumBalance}!");
+                throw new InvalidOperationException($"Withdrawal would exceed minimum balance of {_minimumBalance}!");
             }
         }
 
