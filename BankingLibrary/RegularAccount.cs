@@ -4,9 +4,11 @@ using System.Text;
 
 namespace BankingLibrary
 {
-    class RegularAccount : Account
+    public class RegularAccount : Account
     {
         public List<string> CreditCards { get; set; }
+
+        public override string AccountType => "Regular account";
 
         public RegularAccount(string iban, decimal balance, DateTime creationDate, decimal interest, List<string> creditCards = null) : base(iban, balance, creationDate, interest)
         {

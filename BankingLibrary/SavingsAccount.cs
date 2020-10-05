@@ -4,9 +4,11 @@ using System.Text;
 
 namespace BankingLibrary
 {
-    class SavingsAccount : Account
+    public class SavingsAccount : Account
     {
         public decimal LoyaltyBonus { get; set; }
+
+        public override string AccountType => "Savings account";
 
         public SavingsAccount(string iban, decimal balance, DateTime creationDate, decimal interest, decimal loyaltyBonus) : base(iban, balance, creationDate, interest)
         {
