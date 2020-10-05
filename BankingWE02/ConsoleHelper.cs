@@ -6,26 +6,23 @@ namespace WE02Console
 {
     static class ConsoleHelper
     {
-
-
         public static void TekenKader(string titel, bool dubbel = true)
         {
-            //─│┌┐┘└
-            string horizontaal = "─";
-            string verticaal = "│";
-            string linksBoven = "┌";
-            string linksOnder = "└";
-            string rechtsBoven = "┐";
-            string rechtsOnder = "┘";
+            char horizontaal = '─';
+            char verticaal = '│';
+            char linksBoven = '┌';
+            char linksOnder = '└';
+            char rechtsBoven = '┐';
+            char rechtsOnder = '┘';
 
             if (dubbel)
             {
-                horizontaal = "═";
-                verticaal = "║";
-                linksBoven = "╔";
-                linksOnder = "╚";
-                rechtsBoven = "╗";
-                rechtsOnder = "╝";
+                horizontaal = '═';
+                verticaal = '║';
+                linksBoven = '╔';
+                linksOnder = '╚';
+                rechtsBoven = '╗';
+                rechtsOnder = '╝';
             }
 
             Console.Write(linksBoven);
@@ -65,7 +62,6 @@ namespace WE02Console
             while (!int.TryParse(consoleInput.ToString(), out input) || input < min || input > max)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine();
                 Console.WriteLine("Invalid input!");
                 Console.ForegroundColor = ConsoleColor.Gray;
                 Console.Write(vraag);

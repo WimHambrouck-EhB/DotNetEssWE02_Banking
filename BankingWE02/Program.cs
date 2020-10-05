@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Xml.Serialization;
 using WE02Library;
@@ -18,11 +20,12 @@ namespace WE02Console
             //klanten.Add(new Client("Johan", "Jannsens"));
             //klanten.Add(new Client("Els", "Leys"));
 
+            var creditCards = new List<string> { "123-456-789", "987-654-321" };
 
 
             _accounts = new List<Account>();
-            _accounts.Add(new RegularAccount("23456", 1000M, DateTime.Now, 0.02M, null));
-            //rekeningen.Add(new SavingsAccount("321654", 2000M, DateTime.Now, 0.05M, klanten[2], 0.02M));
+            _accounts.Add(new RegularAccount("BE99 1234 5678 0123", 1000M, DateTime.Now, 0.02M, null, creditCards));
+            _accounts.Add(new SavingsAccount("BE00 9876 5432 1098", 2000M, DateTime.Now, 0.05M, null, 0.02M));
 
             _currentAccount = _accounts[0];
 
@@ -74,7 +77,24 @@ namespace WE02Console
             {
                 Console.WriteLine($"{i++} - {account.IBAN} ({account.AccountType})");
             }
-            Console.ReadLine();
+            Console.WriteLine("0 - Cancel");
+            Console.Write("Choose active account: ");
+            string invoer = Console.ReadLine();
+            int keuze;
+
+            while (!int.TryParse(invoer, out keuze) || keuze < 0 || keuze > _accounts.Count)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Invalid input.");
+                Console.ForegroundColor = ConsoleColor.Gray;
+                Console.Write("Choose active account: ");
+                invoer = Console.ReadLine();
+            }
+
+            if (keuze != 0)
+            {
+                _currentAccount = _accounts[keuze - 1];
+            }
         }
 
         private static void CreateAccount()
@@ -104,7 +124,7 @@ namespace WE02Console
 
             Console.WriteLine("Credit cards (q to stop input):");
             var creditCards = new List<string>();
-            
+
             string invoer = Console.ReadLine();
             while (invoer != "q")
             {
