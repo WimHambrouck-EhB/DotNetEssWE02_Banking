@@ -6,18 +6,18 @@ namespace WE02Library
 {
     public class Client
     {
-        public string Voornaam { get; set; }
-        public string Achternaam { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
-        public Client(string voornaam, string achternaam)
+        public Client(string firstName, string lastName)
         {
-            Voornaam = voornaam;
-            Achternaam = achternaam;
+            FirstName = firstName;
+            LastName = lastName;
         }
 
         public override string ToString()
         {
-            return $"{Achternaam.ToUpperInvariant()} {Voornaam}";
+            return $"{LastName.ToUpperInvariant()} {FirstName}";
         }
     }
 }

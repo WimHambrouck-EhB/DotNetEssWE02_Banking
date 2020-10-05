@@ -5,11 +5,11 @@ namespace WE02Library
     public abstract class Account
     {
         public string IBAN { get; set; }
-        public decimal Balance { get; set; }
+        public decimal Balance { get; private set; }
         public DateTime CreationDate { get; set; }
         public decimal Interest { get; set; }
         public abstract string AccountType { get; }
-        public Client Client { get; set; }
+        public Client Client { get; }
 
 
         public Account(string iban, decimal balance, DateTime creationDate, decimal interest, Client client)
@@ -25,7 +25,7 @@ namespace WE02Library
         /// Adds an amount to the balance of the account.
         /// </summary>
         /// <param name="amount">The amount to be added.</param>
-        /// <exception cref="AmountInvalidException">Thrown when amount is 0 or negative.</exception>
+        /// <exception cref="ArgumentException">Thrown when amount is 0 or negative.</exception>
         public void Deposit(decimal amount)
         {
             if (amount > 0)
@@ -34,7 +34,7 @@ namespace WE02Library
             }
             else
             {
-                throw new AmountInvalidException("Deposited amount must be a number higher than 0!");
+                throw new ArgumentException("Deposited amount must be a number higher than 0!");
             }
         }
 
@@ -42,7 +42,7 @@ namespace WE02Library
         /// Subtracts an amount from the balance of the account.
         /// </summary>
         /// <param name="amount">The amount to subtract.</param>
-        /// <exception cref="AmountInvalidException">Thrown when amount is 0 or negative.</exception>
+        /// <exception cref="ArgumentException">Thrown when amount is 0 or negative.</exception>
         /// <exception cref="InvalidOperationException">Thrown if subtraction of amount would result in account to be overdrawn.</exception>"
         public void Withdraw(decimal amount)
         {
@@ -50,7 +50,7 @@ namespace WE02Library
 
             if (amount <= 0)
             {
-                throw new AmountInvalidException("Withdrawn amount must be a positive number!");
+                throw new ArgumentException("Withdrawn amount must be a positive number!");
             }
 
             if (Balance - amount >= minimumBalance)
@@ -65,7 +65,8 @@ namespace WE02Library
 
         public override string ToString()
         {
-            return $"Client: {Client}, IBAN: {IBAN}, Balance: {Balance:C}, Created on: {CreationDate}, Interest: {Interest}";
+            return $"Client: {Client}" + Environment.NewLine +
+                $"IBAN: {IBAN}, Balance: {Balance:C}, Created on: {CreationDate}, Interest: {Interest}";
         }
-    }
+     }
 }
