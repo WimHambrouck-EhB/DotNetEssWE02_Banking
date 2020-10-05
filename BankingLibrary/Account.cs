@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BankingLibrary
+namespace WE02Library
 {
     public abstract class Account
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BankingLibrary
+namespace WE02Library
 {
     public class SavingsAccount : Account
     {

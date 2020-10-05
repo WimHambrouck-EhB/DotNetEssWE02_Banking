@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace BankingLibrary
+namespace WE02Library
 {
     [Serializable]
     internal class AmountInvalidException : Exception

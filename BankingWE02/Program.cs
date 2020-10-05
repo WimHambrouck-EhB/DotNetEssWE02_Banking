@@ -1,8 +1,8 @@
-﻿using BankingLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using WE02Library;
 
-namespace BankingWE02
+namespace WE02Console
 {
     class Program
     {
