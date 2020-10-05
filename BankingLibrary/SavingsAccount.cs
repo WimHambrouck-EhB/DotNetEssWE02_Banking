@@ -10,7 +10,7 @@ namespace BankingLibrary
 
         public override string AccountType => "Savings account";
 
-        public SavingsAccount(string iban, decimal balance, DateTime creationDate, decimal interest, decimal loyaltyBonus) : base(iban, balance, creationDate, interest)
+        public SavingsAccount(string iban, decimal balance, DateTime creationDate, decimal interest, Client client, decimal loyaltyBonus) : base(iban, balance, creationDate, interest, client)
         {
             LoyaltyBonus = loyaltyBonus;
         }

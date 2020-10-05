@@ -8,13 +8,17 @@ namespace BankingWE02
     {
         static void Main(string[] args)
         {
-            var cards = new List<string> { "1234 456", "3216547" };
 
-            var regular = new RegularAccount("BE81 1234 5678 9871", 1000M, DateTime.Now, 0.02M, cards);
+            var rekeningen = new List<Account>();
+            rekeningen.Add(new RegularAccount("23456", 1000M, DateTime.Now, 0.02M));
+            rekeningen.Add(new SavingsAccount("321654", 2000M, DateTime.Now, 0.05M, 0.02M));
 
-            
 
-            Console.WriteLine(regular);
+            foreach (var rekening in rekeningen)
+            {
+                Console.WriteLine(rekening);
+                Console.WriteLine();
+            }
 
         }
     }

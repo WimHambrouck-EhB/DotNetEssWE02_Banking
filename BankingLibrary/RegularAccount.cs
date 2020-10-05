@@ -10,7 +10,7 @@ namespace BankingLibrary
 
         public override string AccountType => "Regular account";
 
-        public RegularAccount(string iban, decimal balance, DateTime creationDate, decimal interest, List<string> creditCards = null) : base(iban, balance, creationDate, interest)
+        public RegularAccount(string iban, decimal balance, DateTime creationDate, decimal interest, Client client, List<string> creditCards = null) : base(iban, balance, creationDate, interest, client)
         {
             if(creditCards == null)
             {
